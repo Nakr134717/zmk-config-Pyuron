@@ -132,23 +132,3 @@ split_inputs {
     /* 17(J), 18(K), 19(L) を押している間はマウス層をキープ */
     excluded-positions = <16 17 18>; 
 };
-
-/ {
-    /* 右手トラックボールをレイヤー7のときだけスクロール化する設定 */
-    trackball_scroll_listener_R: trackball_scroll_listener_R {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        
-        layers = <5>; /* ★スクロール機能を持たせたいレイヤー番号を指定 */
-        
-        input-processors =
-            /* ① トラックボールの回転方向をPyuronの右手に合わせる */
-            <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>,
-            
-            /* ② マウスの移動量をスクロール量へと変換する（最重要） */
-            <&zip_xy_to_scroll_mapper>,
-            
-            /* ③ スクロール速度の調整（後ろの「5」を大きくすると爆速になります） */
-            <&zip_scroll_scaler 1 5>;
-    };
-};
