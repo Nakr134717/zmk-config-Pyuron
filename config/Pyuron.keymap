@@ -106,7 +106,7 @@
 
 &trackball_listener_R {
     scroller {
-        layers = <7>; /* ★スクロール化したいレイヤー番号（例：7） */
+        layers = <5>; /* ★スクロール化したいレイヤー番号（例：7） */
         input-processors =
             /* ① 右ボールの回転方向をPyuronの元の設定に合わせる */,
             <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>,
