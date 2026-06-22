@@ -60,3 +60,19 @@
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
 };
+
+&trackball_listener_R {
+    scroller {
+        layers = <5>; /* ★Keymap Editorで設定した「レイヤー5」を指定 */
+        
+        input-processors =
+            /* ① 右ボールの回転方向をPyuronの元の設定に合わせる */
+            <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>,
+            
+            /* ② マウス移動をスクロール（ホイール）へ変換する */
+            <&zip_xy_to_scroll_mapper>,
+            
+            /* ③ スクロール速度の調整 */
+            <&zip_scroll_scaler 1 5>;
+    };
+};
